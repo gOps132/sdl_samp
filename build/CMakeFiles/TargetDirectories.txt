@@ -1,0 +1,3 @@
+/Users/giancedrickepilan/dev/projects/sdl_samp/build/CMakeFiles/SDL_SAMP.dir
+/Users/giancedrickepilan/dev/projects/sdl_samp/build/CMakeFiles/edit_cache.dir
+/Users/giancedrickepilan/dev/projects/sdl_samp/build/CMakeFiles/rebuild_cache.dir
