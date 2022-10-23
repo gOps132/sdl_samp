@@ -9,6 +9,10 @@ project(SDL_SAMP
 		LANGUAGES CXX
 )
 
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED YES)
+set(CMAKE_CXX_EXTENSIONS OFF)
+
 set(TARGET_NAME ${PROJECT_NAME})
 
 set(SDL_SAMP_SOURCE_FILES
@@ -18,25 +22,23 @@ set(SDL_SAMP_SOURCE_FILES
 # ------------------------------------------
 # FIND LIBRARIES
 # ------------------------------------------
-INCLUDE(FindPkgConfig)
-
-find_package(SDL2 REQUIRED sdl2)
+set( SDL_STATIC ON CACHE BOOL "" FORCE )
+set( SDL_SHARED OFF CACHE BOOL "" FORCE )
+# 'external/sdl' should point at a SDL
+# repo clone or extracted release tarball
+add_subdirectory( lib/SDL2 )
 
 # ------------------------------------------
 # GENERATE EXECUTABLE
 # ------------------------------------------
-add_executable(${TARGET_NAME}  ${SDL_SAMP_SOURCE_FILES})
-
+add_executable(${TARGET_NAME} ${SDL_SAMP_SOURCE_FILES})
 
 # ------------------------------------------
 # TARGET PROPERTIES
 # ------------------------------------------
-target_include_directories(${TARGET_NAME}
-	PUBLIC ${SDL2_INCLUDE_DIRS}
-)
-
 target_link_libraries(${TARGET_NAME}
-	PUBLIC	${SDL2_LIBRARIES}
+	PUBLIC SDL2main 
+	PUBLIC SDL2-static
 )
 
 set_target_properties(${TARGET_NAME} PROPERTIES 
